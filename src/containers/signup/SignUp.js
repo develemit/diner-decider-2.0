@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Field, reduxForm, /*reset*/ } from 'redux-form'
+import { Link } from 'react-router-dom';
 import * as userActions from '../../actions/users'
 
 class SignUp extends Component {
@@ -13,8 +14,6 @@ class SignUp extends Component {
     document.getElementById("signUpBtn").disabled = false :
     document.getElementById("signUpBtn").disabled = true;
   }
-
-
 
   render() {
     return (
@@ -29,7 +28,7 @@ class SignUp extends Component {
           <Field name="password" component="input" type="password" placeholder="Password" ref="pass"/><br/>
           <Field name="checkpass" component="input" type="password" placeholder="Confirm Password" ref="checkPass" onKeyUp={this.checkPass}/><br/>
           <button id="signUpBtn" disabled>Sign Up</button> <br/>
-          <button>Cancel</button>
+          <Link to='/'><button>Cancel</button></Link>
         </form>
       </div>
     )
@@ -37,7 +36,7 @@ class SignUp extends Component {
 }
 
 //Redux conversation between Component and Store//
-  function mapStateToProps (state) {
+function mapStateToProps (state) {
     return {
 
     }
@@ -47,7 +46,6 @@ function mapDispatchToProps(dispatch) {
       userActions: bindActionCreators(userActions, dispatch)
   }
 }
-
 SignUp = reduxForm({
   // a unique identifier for this form
   form: 'signup'

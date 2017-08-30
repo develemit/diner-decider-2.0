@@ -1,33 +1,88 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
 BrowserRouter as Router,
-Route } from 'react-router-dom';
-import './App.css';
-import LoadingHome from './components/LoadingHome';
-import LoginHome from './containers/login/LoginHome';
-import LoginMain from './containers/login/LoginMain';
-import SignUp from './containers/signup/SignUp';
+Route} from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+// import axios from 'axios'
+import './App.css'
+import LoadingHome from './components/LoadingHome'
+import LoginHome from './containers/login/LoginHome'
+import LoginMain from './containers/login/LoginMain'
+import SignUp from './containers/signup/SignUp'
+import DinerDecider from './containers/diner-decider/DinerDecider'
+import ProfileHome from './containers/profile/ProfileHome'
+import Passport from './containers/profile/Passport'
+import menuIcon from './menuIcon.png'
+import SideNav from './components/SideNav'
+import * as userActions from './actions/users'
+import * as passportActions from './actions/passport';
+// import * as ddActions from './actions/dinerdecider'
 
 class App extends Component {
 
   componentDidMount() {
+    console.log('App got user');
+    this.props.userActions.getUser();
+    console.log('App got passport');
+    this.props.passportActions.getPassport();
+    // this.props.ddActions.initGeolocate();
 
+    }
+
+  openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  }
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+    document.body.style.backgroundColor = "white";
   }
 
-
-  render() {
+render() {
+    let iconStyle = {
+      position: "absolute",
+      left: "0px",
+      backgroundImage: menuIcon
+    }
 
     return (
       <Router>
-      <div className="App">
-        <Route exact path="/" component={LoadingHome}/>
-        <Route exact path="/" component={LoginHome}/>
-        <Route exact path="/login" component={LoginMain}/>
-        <Route exact path="/signup" component={SignUp}/>
-      </div>
-    </Router>
+        <div>
+          <div id="mySidenav" className="sidenav" onClick={this.closeNav}>
+            <a className="closebtn" onClick={this.closeNav}>&times;</a>
+            <SideNav onClick={this.closeNav}/>
+          </div>
+          <img id="menu" style={iconStyle} src={menuIcon} alt="menu" onClick={this.openNav}/>
+
+          <div id="main" className="App" onClick={this.closeNav}>
+
+        {/* <Route exact path="/" component={LoadingHome}/> */}
+          <Route exact path="/" component={LoginHome} chidlren={LoadingHome}/>
+          <Route exact path="/login" component={LoginMain}/>
+          <Route exact path="/signup" component={SignUp}/>
+          <Route exact path="/dinerdecider" component={DinerDecider}/>
+          <Route exact path="/profile" component={ProfileHome}/>
+          <Route path="/profile/passport" component={Passport}/>
+
+          {/* <Route exact path="/profile" component={Profile}/> */}
+          {/* <Route exact path="/profile/passport" component={Passport}/> */}
+
+          </div>
+        </div>
+      </Router>
     );
   }
 }
+function mapDispatchToProps(dispatch) {
+  return {
+      userActions: bindActionCreators(userActions, dispatch),
+      passportActions: bindActionCreators(passportActions, dispatch)
+      // ddActions: bindActionCreators(ddActions, dispatch)
+  }
+}
 
-export default App;
+
+export default connect(null, mapDispatchToProps)(App);

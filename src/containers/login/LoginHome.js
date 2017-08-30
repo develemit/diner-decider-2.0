@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as userActions from '../../actions/users'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class LoginHome extends Component {
 
@@ -10,8 +10,8 @@ class LoginHome extends Component {
     return (
       <div>
       This is now the Login Home Page<br/>
-      <Link to="/login"><button>Login</button></Link><br/>
-      <Link to="/signup"><button>Sign Up</button></Link>
+      <NavLink to="/login"><button>Login</button></NavLink><br/>
+      <NavLink to="/signup"><button>Sign Up</button></NavLink>
       </div>
     )
   }
