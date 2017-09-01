@@ -22,3 +22,17 @@ export const getPlace = (params, data) => {
       })
   }
 }
+export const getRandomPlace = (data) => {
+  console.log('this is getPlace action',data.data.location)
+  let {lat, lng} = data.data.location
+  return {
+    type: 'FETCH_PLACE',
+    payload: axios({
+        method: "get",
+        url: `https://developers.zomato.com/api/v2.1/search?lat=${lat}&lon=${lng}&radius=${Math.floor(Math.random() * 40234) + 1610}`,
+        headers: {
+          "user-key": "5fb9a10ef535abdb7bbc830e44d17a8f"
+        }
+      })
+  }
+}

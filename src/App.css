@@ -66,6 +66,11 @@ body {
   margin-left: 50px;
 }
 
+.buttonStyle {
+  width: 200px;
+  margin: 0px auto;
+}
+
 #main {
   transition: margin-left .5s;
   padding: 16px;
@@ -76,6 +81,10 @@ body {
 }
 
 #myProfile {
+  margin-top: 0px;
+}
+
+#createAccount {
   margin-top: 0px;
 }
 
@@ -104,12 +113,18 @@ body {
   box-shadow: 5px 5px 5px #000000;
 }
 
+#noResults {
+  color: !important black;
+}
+
 #map {
-  height: 28vh;
-  width: 45vw;
+  height: 50vh;
+  width: 25vw;
   margin-top: 5%;
   display: inline-block;
   color: black;
+  border: 2px solid black;
+  box-shadow: 5px 5px 5px #000000;
 }
 
 @media screen and (max-height: 450px) {
