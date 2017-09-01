@@ -13,7 +13,7 @@ class ProfileHome extends Component {
     return (
       <div>
 
-        <h2>My Profile</h2>
+        <h2 id="myProfile"> My Profile</h2>
         <img src={user.length > 0 ? user[0].photo : "loading"} alt="profile-pic"/>
         <h3>{user.length > 0 ? user[0].first_name : "loading"} {user.length > 0 ? user[0].last_name : "loading"}</h3> <br/>
         <NavLink to="/profile/passport"><button>My Passport</button></NavLink><br/>

@@ -12,6 +12,7 @@ const ActiveNav = (props) => {
   }
 }
 const SignedInSideNav = (props) => {
+  console.log("this is the sideNav Yo!", props);
     return (
     <div>
       <NavLink to="/dinerdecider">
@@ -26,7 +27,7 @@ const SignedInSideNav = (props) => {
       <NavLink to="/profile/zipcode">
         Change Zip
       </NavLink>
-      <NavLink to="/logout">
+      <NavLink onClick={() => props.logOut} to="/">
         Logout
       </NavLink>
    </div>
@@ -46,10 +47,10 @@ const NotSignedInSideNav = (props) => {
  }
 
 const SideNav = (props) => {
-  let loggedIn = true
+
   return (
     <div>
-      <ActiveNav loggedIn={loggedIn} />
+      <ActiveNav loggedIn={props.loggedIn} />
     </div>
   )
 }

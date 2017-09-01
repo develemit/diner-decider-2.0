@@ -17,7 +17,8 @@ import menuIcon from './menuIcon.png'
 import SideNav from './components/SideNav'
 import * as userActions from './actions/users'
 import * as passportActions from './actions/passport';
-// import * as ddActions from './actions/dinerdecider'
+import * as commentsActions from './actions/comments';
+import dinerdeciderpagebackground from './svg/diner-decider-page-background.svg'
 
 class App extends Component {
 
@@ -26,6 +27,7 @@ class App extends Component {
     this.props.userActions.getUser();
     console.log('App got passport');
     this.props.passportActions.getPassport();
+    this.props.commentsActions.getComments();
     // this.props.ddActions.initGeolocate();
 
     }
@@ -41,11 +43,23 @@ class App extends Component {
     document.body.style.backgroundColor = "white";
   }
 
+  logOut(){
+    this.loggedIn = false
+  }
+
 render() {
     let iconStyle = {
       position: "absolute",
-      left: "0px",
+      left: "5px",
       backgroundImage: menuIcon
+    }
+    let backgroundStyle = {
+      height: "100vh",
+       margin: '0px',
+       padding: '0px',
+       backgroundImage : `url("${dinerdeciderpagebackground}")`,
+       backgroundRepeat: 'no-repeat',
+       backgroundSize: '100%',
     }
 
     return (
@@ -53,11 +67,14 @@ render() {
         <div>
           <div id="mySidenav" className="sidenav" onClick={this.closeNav}>
             <a className="closebtn" onClick={this.closeNav}>&times;</a>
-            <SideNav onClick={this.closeNav}/>
+            <SideNav onClick={this.closeNav} loggedIn={true} logOut={this.logOut}/>
           </div>
-          <img id="menu" style={iconStyle} src={menuIcon} alt="menu" onClick={this.openNav}/>
-
-          <div id="main" className="App" onClick={this.closeNav}>
+          <div onClick={this.openNav} style={iconStyle}>
+          <div className="menu"></div>
+          <div className="menu"></div>
+          <div className="menu"></div>
+          </div>
+          <div id="main" className="App" onClick={this.closeNav} style={backgroundStyle}>
 
         {/* <Route exact path="/" component={LoadingHome}/> */}
           <Route exact path="/" component={LoginHome} chidlren={LoadingHome}/>
@@ -79,8 +96,8 @@ render() {
 function mapDispatchToProps(dispatch) {
   return {
       userActions: bindActionCreators(userActions, dispatch),
-      passportActions: bindActionCreators(passportActions, dispatch)
-      // ddActions: bindActionCreators(ddActions, dispatch)
+      passportActions: bindActionCreators(passportActions, dispatch),
+      commentsActions: bindActionCreators(commentsActions, dispatch)
   }
 }
 

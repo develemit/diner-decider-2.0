@@ -8,6 +8,8 @@ import * as ddActions from '../../actions/dinerdecider'
 import MapLocation from './MapLocation'
 
 
+
+
 class DinerDecider extends Component {
 
   getPlace(params){
@@ -17,13 +19,14 @@ class DinerDecider extends Component {
   }
 
   render() {
-      console.log('dd props',this)
+      console.log('dd props',this.props)
+
       let {handleSubmit} = this.props
     return (
       <div>
-        Welcome To Diner Decider! <br/>
+        <h1 style={{marginTop: "0px"}}>Welcome To Diner Decider!</h1> <br/>
         <form onSubmit={handleSubmit(this.getPlace.bind(this))}>
-          <Field id="cuisine-select" name="cuisine" component="select" type="select" ref="cuisine">
+          <Field id="cuisine-select" name="cuisine" component="select" type="select" ref="cuisine" className="btn btn-primary btn-lg">
             <option>Select Cuisine</option>
             <option value="1">American</option>
             <option value="491">Cajun</option>
@@ -44,7 +47,7 @@ class DinerDecider extends Component {
             <option value="99">Vietnamese</option>
           </Field><br/>
 
-          <Field id="distance-select" name="distance" component="select" type="select" ref="distance">
+          <Field id="distance-select" name="distance" component="select" type="select" ref="distance" className="btn btn-primary">
             <option>Select Distance</option>
             <option value="1610">1 Mile</option>
             <option value="8050">5 Miles</option>
@@ -52,10 +55,14 @@ class DinerDecider extends Component {
             <option value="40235">25 Miles</option>
           </Field><br/>
 
-          <button id="submit">Decide!</button><br/>
-          <button>Randomize</button><br/>
+          <button id="submit" className="btn btn-primary">Decide!</button><br/>
+          <button className="btn btn-primary">Randomize</button><br/>
         </form>
-        <MapLocation/><br/>
+        { this.props.dinerdecider.name || this.props.dinerdecider.length === 0?
+                      (<MapLocation/>) :
+          (<div>No places found matching your search criteria. Up for something else?
+          </div>)
+            }
       </div>
     )
   }
@@ -64,7 +71,7 @@ class DinerDecider extends Component {
 //Redux conversation between Component and Store//
 function mapStateToProps (state) {
     return {
-
+      dinerdecider: state.dinerdecider
     }
   }
 function mapDispatchToProps(dispatch) {

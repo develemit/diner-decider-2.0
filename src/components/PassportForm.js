@@ -3,21 +3,39 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Field, reduxForm, /*reset*/ } from 'redux-form'
 import * as passportActions from '../actions/passport'
+import { withRouter } from 'react-router-dom';
 
 class PassportForm extends Component {
 
-  submitAddToPassport(e){
-    e.preventDefault();
-    console.log("clicked it yo!", this);
+  submitAddToPassport(values){
+
+    this.props.passportActions.addToPassport(values)
+    console.log("clicked it yo!", values);
+    this.props.history.push("/profile/passport")
+  }
+  updateFields(user_id, name, location){
+  let val1 =  this.props.change("user_id", user_id)
+  let val2 =  this.props.change("name", name)
+  let val3 =  this.props.change("location", location.address)
+    return this.submitAddToPassport({
+      user_id: val1,
+      name: val2,
+      location: val3
+    })
   }
 
   render() {
     console.log('Passport form',this.props);
-    // let {handleSubmit} = this.props
+    let {handleSubmit} = this.props
+    let {name, location } = this.props.result
+    let user_id = 1
     return (
       <div>
-        <form>
-        <button onClick={this.submitAddToPassport}>Add to Passport</button>
+        <form onSubmit={handleSubmit((values)=>this.updateFields(user_id,name,location))}>
+          <Field name="user_id" component="input" type="hidden" />
+          <Field name="name" component="input" type="hidden" />
+          <Field name="location" component="input" type="hidden" />
+          <button> Add to Passport</button>
         </form>
       </div>
     )
@@ -39,4 +57,4 @@ PassportForm = reduxForm({
   // a unique identifier for this form
   form: 'passport'
 })(PassportForm)
-export default connect(null, mapDispatchToProps)(PassportForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PassportForm));

@@ -19,8 +19,17 @@
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  margin: 0px;
+  padding: 0px;
+  font-family: "mv boli", sans-serif;
   transition: background-color .5s;
+}
+
+.menu {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
 }
 
 .sidenav {
@@ -62,12 +71,20 @@ body {
   padding: 16px;
 }
 
+#myPassport {
+  margin-top: 0px;
+}
+
+#myProfile {
+  margin-top: 0px;
+}
+
 .passportCard {
   height: auto;
   width: 35vw;
   border: 1px solid black;
   margin: 10px auto;
-  box-shadow: 5px 5px 5px #888888;
+  box-shadow: 5px 5px 5px #000000;
 }
 
 .diner-emblem {
@@ -77,6 +94,14 @@ body {
 .comments {
   margin: 10px;
   clear: both;
+}
+
+.comment {
+  border: 1px solid black;
+  margin: 10px;
+  position: relative;
+  top: 5px;
+  box-shadow: 5px 5px 5px #000000;
 }
 
 #map {

@@ -11,15 +11,22 @@ class MapLocation extends Component {
   render() {
     console.log('inside the MapLocation',this.props.result)
       let {name, price_range, location} = this.props.result
-    return (
+    return this.props.result.name ? (
       <div id="map">
         {this.props.result.name && <div>
+          {name ? <img src={`http://logo.clearbit.com/${name.replace(/[ ,']/g, '')}.com`} alt="No Diner Logo Available"/> : <div>No Diner Logo Available</div>}<br/>
           <h4>{name}</h4>
           <p>Price Range: {'$'.repeat(price_range)}</p>
           <p>{location.address}</p>
+          <a href={`https://www.google.com/maps/search/${name}+${location.address}`} target="_blank"><button>Get Directions</button></a>
           <PassportForm result={this.props.result}/>
         </div>}
       </div>
+    ) : this.props.result.length > 0 ? (
+      <div>No places found matching your search criteria. Up for something else?</div>
+    ) :
+    (
+      <div>Default Message</div>
     )
   }
 }
