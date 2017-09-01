@@ -36,7 +36,9 @@ class PassportForm extends Component {
           <Field name="user_id" component="input" type="hidden" />
           <Field name="name" component="input" type="hidden" />
           <Field name="location" component="input" type="hidden" />
-          <button style={{backgroundColor: "inherit", border: "none"}}> <img className="buttonStyle" style={{width: "100px", postion: "relative", bottom: "0px"}} src={addToPassportButton} alt="add to passport"/></button>
+          <button style={{backgroundColor: "inherit", border: "none"}}>
+            <img className="buttonStyle" style={{width: "100px", postion: "relative", bottom: "0px"}} src={addToPassportButton} alt="add to passport"/>
+          </button>
         </form>
       </div>
     )

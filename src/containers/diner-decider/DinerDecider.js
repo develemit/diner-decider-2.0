@@ -40,7 +40,9 @@ class DinerDecider extends Component {
       <div>
         <h1 style={{marginTop: "0px"}}>Welcome To Diner Decider!</h1> <br/>
         <form onSubmit={handleSubmit(this.getPlace.bind(this))} className="buttonStyle">
-          <Field id="cuisine-select" name="cuisine" component="select" type="select" ref="cuisine" className="btn btn-primary btn-lg"
+          <Field id="cuisine-select" name="cuisine" component="select" type="select" ref="cuisine" className="btn btn-primary btn-lg buttonStyle"
+            style={{height: "50px"}}
+
             onChange={() => this.selectionCheck()}>
             <option>Select Cuisine</option>
             <option value="1">American</option>
@@ -62,8 +64,9 @@ class DinerDecider extends Component {
             <option value="99">Vietnamese</option>
           </Field><br/>
 
-          <Field id="distance-select" name="distance" component="select" type="select" ref="distance" className="btn btn-primary"
-            onChange={() => this.selectionCheck()}>
+          <Field id="distance-select" name="distance" component="select" type="select" ref="distance" className="btn btn-primary buttonStyle"
+            onChange={() => this.selectionCheck()}
+            style={{height: "50px"}}>
             <option>Select Distance</option>
             <option value="1610">1 Mile</option>
             <option value="8050">5 Miles</option>

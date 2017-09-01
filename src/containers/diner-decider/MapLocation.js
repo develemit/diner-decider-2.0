@@ -17,7 +17,7 @@ class MapLocation extends Component {
     return this.props.result.name ? (
       <div id="map" className="">
         {this.props.result.name && <div>
-          {name ? <img src={`http://logo.clearbit.com/${name.replace(/[ ,']/g, '')}.com`} alt="No Diner Logo Available"/> : <div>No Diner Logo Available</div>}<br/>
+          {name ? <img src={`http://logo.clearbit.com/${name.replace(/[ ,']/g, '')}.com`} alt="No Diner Logo Available" style={{height: "150px"}}/> : <div>No Diner Logo Available</div>}<br/>
           <h4>{name}</h4>
           <p>Price Range: {'$'.repeat(price_range)}</p>
           <p>{location.address}</p>

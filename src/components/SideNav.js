@@ -24,9 +24,6 @@ const SignedInSideNav = (props) => {
       <NavLink to="/profile/passport">
         Passport
       </NavLink>
-      <NavLink to="/profile/zipcode">
-        Change Zip
-      </NavLink>
       <NavLink onClick={() => props.logOut} to="/">
         Logout
       </NavLink>

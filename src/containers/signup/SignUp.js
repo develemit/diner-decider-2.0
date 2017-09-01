@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, /*reset*/ } from 'redux-form'
 import { Link } from 'react-router-dom';
 import * as userActions from '../../actions/users'
-import signUpButton from '../../svg/signUpButton.svg'
-import cancelButton from '../../svg/cancelButton.svg'
 class SignUp extends Component {
 
   checkPass = () => {
@@ -23,9 +21,10 @@ class SignUp extends Component {
 
   render() {
     let {handleSubmit} = this.props
+
     return (
       <div id="createAccount" className="buttonStyle">
-        <h1>Create Account</h1><br/>
+        <h1 style={{marginTop: "0px"}}>Create Account</h1><br/>
         <form onSubmit={handleSubmit(() => this.newUserSubmit())}>
           <Field className="form-control input-default" name="name-first" component="input" type="text" placeholder="First Name"/><br/>
           <Field className="form-control input-default" name="name-last" component="input" type="text" placeholder="Last Name"/><br/>

@@ -7,21 +7,30 @@ import * as userActions from '../../actions/users';
 
 class LoginMain extends Component {
 
+  checkPass(){
+    console.log('check log in button', this.props);
+  //   let {pass, checkPass} = this.refs
+  //   pass.value === checkPass.value ?
+  //   document.getElementById("loginPass").disabled = false :
+  //   document.getElementById("loginPass").disabled = true;
+  this.props.history.push('/dinerdecider')
+  }
+
   render() {
     return (
       <div>
-        Main Login Page<br/>
+        <h1 id="loginHeader" style={{marginTop: "0px", color: "black"}}>Login</h1><br/>
 
-        <form>
-        <label name="username">Username: </label>
-        <Field name="username" component="input" type="text" />
+        <form style={{width: "400px", margin: "0px auto"}}>
+        <label name="username" style={{color: "black"}}>Username: </label>
+        <Field name="username" component="input" type="text" ref="username"/>
           <br/>
-        <label name="password">Password: </label>
-        <Field name="password" component="input" type="password" />
+        <label name="password" style={{color: "black"}}>Password: </label>
+        <Field name="password" component="input" type="password" ref="password"/>
         </form>
 
         {/* Placeholder for successful login*/}
-          <Link to='/dinerdecider'><button>Login</button></Link>
+          <button id="loginPass" onClick={() => this.checkPass()}>Login</button>
 
       </div>
     )
@@ -31,7 +40,7 @@ class LoginMain extends Component {
 //Redux conversation between Component and Store//
 function mapStateToProps (state) {
     return {
-
+      user: state.users
     }
   }
 function mapDispatchToProps(dispatch) {
